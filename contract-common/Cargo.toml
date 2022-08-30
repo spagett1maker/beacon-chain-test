@@ -1,0 +1,23 @@
+[package]
+name = "pdao-colony-contract-common"
+version = "0.1.1"
+authors = ["PDAO Team <hello@postech-dao.xyz>"]
+edition = "2021"
+license = "MIT"
+description = "PDAO library for colony chain contract development"
+repository = "https://github.com/postech-dao/beacon-chain"
+keywords = ["blockchain", "PDAO"]
+categories = ["cryptography", "wasm"]
+include = ["src/**/*.rs", "README.md", "LICENSE"]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+pdao-beacon-chain-common = { version = "0.0.1", path = "../common"}
+borsh = { version = "0.9.3", optional = true }
+scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"], optional = true }
+scale-info = { version = "2.0.0", features = ["derive"], optional = true }
+
+[features]
+polkadot = ["scale", "scale-info", "pdao-beacon-chain-common/polkadot"]
+near = ["borsh", "pdao-beacon-chain-common/near"]
+
